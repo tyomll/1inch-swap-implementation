@@ -1,7 +1,15 @@
 import React from "react";
-import SwapInput from "./SwapInput";
+import { getTokens } from "@/utils/1inch/api";
+import { ChainId } from "@/utils/constants";
+import SwapInputs from "./SwapInputs";
 
-const Swap = () => {
+const getAvailableTokens = async () => {
+  const tokens = await getTokens(ChainId.ETHEREUM);
+  return tokens;
+};
+
+const Swap = async () => {
+  const tokens = await getAvailableTokens();
   return (
     <div className="w-[500px] rounded-3xl bg-white p-6 shadow-lg">
       <div className="flex items-center justify-between pb-2">
@@ -10,14 +18,7 @@ const Swap = () => {
           <button className="text-gray-500">Limit</button>
         </div>
       </div>
-      <div className="mt-4 space-y-1">
-        <SwapInput operation="pay" />
-        <SwapInput operation="receive" />
-      </div>
-      <button className="mt-6 flex w-full items-center justify-center space-x-2 rounded-full bg-blue-100 py-2 text-sm text-blue-700">
-        <i className="fas fa-wallet"></i>
-        <span>Connect wallet</span>
-      </button>
+      <SwapInputs tokens={tokens} />
     </div>
   );
 };

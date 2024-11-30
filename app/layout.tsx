@@ -20,11 +20,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`layout ${inter.className}`}>
-        <Header />
         <AppKit>
+          <Header />
           <main className="content">{children}</main>
+          <Footer />
         </AppKit>
-        <Footer />
       </body>
     </html>
   );

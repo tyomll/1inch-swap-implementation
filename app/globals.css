@@ -9,7 +9,3 @@
 .content {
   @apply max-w-[1400px];
 }
-
-.numericInput {
-  @apply [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none;
-}
